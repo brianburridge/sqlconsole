@@ -1,6 +1,27 @@
 = sqlconsole
 
-Description goes here.
+The sqlconsole gem provides sql functionality from within the standard rails console. I'm a long time SQL user, and though I love ActiveRecord, I find myself frequently needing to perform sql statements to quickly update large quantities of rows, to query lookup tables and scan across multiple rows, etc. Tired of having to switch back and forth between dbconsole and the rails console, I created this.
+
+You'll need to install the gem first
+	gem install sqlconsole
+	
+Then, you can manually type in the following each time you launch your console,
+	require 'sqlconsole'
+	
+Or, a better option is to modify your .irbrc. For example, the block below shows the proper placement of the require command in customized .irbrc file. This sample block also turns on logging for SQL commands to show you the real SQL being executed. I find this helpful, but if you don't, remove the three logger lines. Note: The require for sqlconsole must be inside this block to ensure a) that this is running within a Rails environment, and b) that it runs after Rails has loaded, to ensure the database connection has been made.
+
+	# Some default enhancements/settings for IRB, based on
+	# http://wiki.rubygarden.org/Ruby/page/show/Irb/TipsAndTricks
+	if ENV['RAILS_ENV']
+	  # Called after the irb session is initialized and Rails has been loaded
+	  IRB.conf[:IRB_RC] = Proc.new do
+	    logger = Logger.new(STDOUT)
+	    ActiveRecord::Base.logger = logger
+	    ActiveResource::Base.logger = logger
+	    require 'sqlconsole'
+	  end
+	end
+
 
 == Note on Patches/Pull Requests
  
@@ -14,4 +35,4 @@ Description goes here.
 
 == Copyright
 
-Copyright (c) 2010 Andy Smith. See LICENSE for details.
+Copyright (c) 2010 Brian Burridge. See LICENSE for details.
