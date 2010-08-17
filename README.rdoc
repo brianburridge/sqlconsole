@@ -2,8 +2,11 @@
 
 The sqlconsole gem provides sql functionality from within the standard rails console. I'm a long time SQL user, and though I love ActiveRecord, I find myself frequently needing to perform sql statements to quickly update large quantities of rows, to query lookup tables and scan across multiple rows, etc. Tired of having to switch back and forth between dbconsole and the rails console, I created this.
 
-You'll need to install the gem first
+You'll need to install the sqlconsole gem first
 	gem install sqlconsole
+	
+And then also the awesome print gem. At least for now, I am using that to render the sql result in a Hash format. 
+	gem install awesome_print
 	
 Then, you can manually type in the following each time you launch your console,
 	require 'sqlconsole'
@@ -19,6 +22,25 @@ Or, a better option is to modify your .irbrc. For example, the block below shows
 	    ActiveRecord::Base.logger = logger
 	    ActiveResource::Base.logger = logger
 	    require 'sqlconsole'
+	  end
+	end
+
+While you are editing your .irbrc file, I also recommend using the awesome_print gem in general. It makes it much easier to see the Hashes out put by model dumps in the console. To to this, modify your .irbrc file to include the following:
+
+	unless defined? ETC_IRBRC_LOADED
+ 
+	  # Require RubyGems by default.
+	  require 'rubygems'
+ 
+	  begin
+	    require "ap"
+	    IRB::Irb.class_eval do
+	      def output_value
+	        ap @context.last_value
+	      end
+	    end
+	  rescue LoadError => e
+	    puts "ap gem not found.  Try typing 'gem install awesome_print' to get super-fancy output."
 	  end
 	end
 
