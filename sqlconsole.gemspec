@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "lib/sqlconsole.rb",
+     "sqlconsole.gemspec",
      "test/helper.rb",
      "test/test_sqlconsole.rb"
   ]
