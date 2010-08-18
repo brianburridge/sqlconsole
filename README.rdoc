@@ -43,6 +43,8 @@ While you are editing your .irbrc file, I also recommend using the awesome_print
 	    puts "ap gem not found.  Try typing 'gem install awesome_print' to get super-fancy output."
 	  end
 	end
+	
+I've included my .irbrc file which sets up awesome print, tab completion, console history saving, and this gem, sqlconsole.
 
 
 == Note on Patches/Pull Requests
