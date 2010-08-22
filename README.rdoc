@@ -60,3 +60,4 @@ I've included my .irbrc file which sets up awesome print, tab completion, consol
 == Copyright
 
 Copyright (c) 2010 Brian Burridge. See LICENSE for details.
+
